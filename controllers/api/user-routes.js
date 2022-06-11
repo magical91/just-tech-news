@@ -80,10 +80,9 @@ router.post('/', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
-})
+});
 
 router.post('/login', (req, res) => {
-    // expects {email: 'lernantino@gmail.com', password: 'password1234'}
     User.findOne({
         where: {
             email: req.body.email
@@ -94,7 +93,6 @@ router.post('/login', (req, res) => {
             return;
         }
 
-        // Verify user
         const validPassword = dbUserData.checkPassword(req.body.password);
 
         if (!validPassword) {
